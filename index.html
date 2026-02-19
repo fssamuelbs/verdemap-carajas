@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VerdeMAP Carajás - Tela Inicial</title>
+    <meta
+      name="description"
+      content="Conheça as Áreas Verdes Urbanas de Paruapebas com o VerdeMAP Carajás."
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+      body {
+        background: linear-gradient(#effff3, #d2f7dd);
+
+        min-height: 100vh;
+      }
+      /* NAV SUPERIOR */
+      header {
+        width: 100%;
+        background: rgb(255, 255, 255);
+        padding: 15px 0;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+      }
+      .logo-nav img {
+        height: 70px;
+        cursor: pointer;
+        transition: 0.3s;
+        margin-left: 20px;
+      }
+      .logo-nav img:hover {
+        transform: scale(1.05);
+      }
+      nav {
+        margin-right: 30px;
+      }
+      nav a {
+        margin: 0 15px;
+        text-decoration: none;
+        color: #333;
+        font-weight: 600;
+        transition: 0.3s;
+      }
+      nav a:hover {
+        color: #0984e3;
+      }
+
+      .container {
+        padding-top: 140px;
+        text-align: center;
+      }
+      h1 {
+        font-size: 2.8rem;
+        margin-bottom: 10px;
+        color: #222;
+      }
+      p {
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+        color: #555;
+      }
+
+      .map-preview {
+        width: 90%;
+        max-width: 900px;
+        height: 300px;
+        background: #ccc;
+        border-radius: 15px;
+        overflow: hidden;
+        margin: 20px auto;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+      }
+      .map-preview iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+
+      .btn {
+        background: #0984e3;
+        color: white;
+        padding: 15px 40px;
+        font-size: 1.2rem;
+        border-radius: 50px;
+        cursor: pointer;
+        border: none;
+        transition: 0.3s;
+        font-weight: 600;
+      }
+      .btn:hover {
+        transform: scale(1.08);
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+      }
+
+      .praças {
+        margin: 60px auto;
+        width: 90%;
+        max-width: 900px;
+        background: white;
+        padding: 25px;
+        border-radius: 18px;
+        box-shadow: 0 0 18px rgba(0, 0, 0, 0.15);
+      }
+      .praças h2 {
+        text-align: center;
+        font-size: 2rem;
+        margin-bottom: 20px;
+        color: #0984e3;
+      }
+      .praças ul {
+        list-style: none;
+        padding: 0;
+      }
+      .praças li {
+        background: #f5f5f5;
+        padding: 15px;
+        margin: 10px 0;
+        border-radius: 12px;
+        font-size: 1.2rem;
+        font-weight: 500;
+        color: #333;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+      }
+      .praças li:hover {
+        background: #e8e8e8;
+      }
+
+      /* CLIMA BOX */
+      .clima-box {
+        background: white;
+        width: 90%;
+        max-width: 500px;
+        margin: 40px auto;
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+        text-align: center;
+      }
+      .clima-box img {
+        width: 60px;
+      }
+
+      footer {
+        width: 100%;
+        text-align: center;
+        margin-top: 40px;
+        padding: 20px;
+        color: #555;
+        font-size: 0.9rem;
+      }
+
+      .faq {
+        width: 90%;
+        max-width: 900px;
+        margin: 40px auto;
+        background: #fff;
+        padding: 25px;
+        border-radius: 18px;
+        box-shadow: 0 0 18px rgba(0, 0, 0, 0.15);
+      }
+
+      .faq h2 {
+        text-align: center;
+        color: #0984e3;
+        margin-bottom: 20px;
+      }
+
+      .faq-item {
+        margin-bottom: 15px;
+        border-bottom: 1px solid #ddd;
+      }
+
+      .faq-question {
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 5px;
+        font-weight: 600;
+        font-size: 1.1rem;
+      }
+
+      .faq-answer {
+        display: none;
+        padding: 10px 5px;
+        font-size: 1rem;
+        color: #555;
+      }
+
+      .toggle {
+        font-weight: bold;
+        color: #0984e3;
+        transition: transform 0.3s;
+      }
+
+      .faq-question.active .toggle {
+        transform: rotate(45deg);
+      }
+
+      footer {
+        width: 100%;
+        background: #333;
+        color: #fff;
+        padding: 30px 0 10px 0;
+        text-align: left;
+        font-family: Arial, sans-serif;
+      }
+
+      .footer-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .footer-content h3 {
+        margin-bottom: 10px;
+        font-size: 20px;
+      }
+
+      .footer-content ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .footer-content ul li {
+        margin: 5px 0;
+      }
+
+      .footer-content ul li a {
+        color: #fff;
+        text-decoration: none;
+      }
+      .footer-content ul li a:hover {
+        text-decoration: underline;
+      }
+
+      .fim {
+        height: 80px;
+        margin-left: 20px;
+      }
+
+      .direitos {
+        margin-top: 15px;
+        font-size: 14px;
+        opacity: 0.8;
+        align-items: center;
+      }
+
+      /* CONTAINER LADO A LADO */
+      .info-lateral {
+        width: 90%;
+        max-width: 900px;
+        margin: 40px auto;
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      /* BOX DE DICAS */
+      .dicas-box {
+        background: white;
+        padding: 20px;
+        width: 300px;
+        border-radius: 15px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+      }
+
+      .dicas-box h3 {
+        text-align: center;
+        color: #0984e3;
+        margin-bottom: 15px;
+      }
+
+      .dicas-box ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .dicas-box ul li {
+        background: #f4f4f4;
+        padding: 10px;
+        margin: 8px 0;
+        border-radius: 10px;
+        font-size: 0.95rem;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <div class="logo-nav">
+        <img src="https://i.postimg.cc/v1LsWpTs/ecomap.png" alt="EcoMap Logo" />
+      </div>
+
+      <nav>
+        <a href="termos.html">Termos de Uso</a>
+        <a href="dúvidasfrequentes.html">O que é</a>
+        <a href="developer.html">Desenvolvedor</a>
+      </nav>
+    </header>
+
+    <div class="container">
+      <h1>Bem-vindo ao VerdeMAP</h1>
+      <p>Veja uma prévia do mapa ambiental antes de abrir a versão completa.</p>
+
+      <div class="map-preview">
+        <iframe src="mapalock.html"></iframe>
+      </div>
+
+      <button class="btn" onclick="abrirMapa()">Abrir mapa expandido</button>
+    </div>
+
+    <section class="praças">
+      <h2>Top 5 Áreas Verdes Recomendadas</h2>
+      <ul>
+        <li onclick="abrirPraca('pracaalvorá')">
+          🌳 <strong>Praça do Alvorá</strong> ➜
+        </li>
+        <li onclick="abrirPraca('complexo-turistico')">
+          🌄 <strong>Complexo Turístico</strong> ➜
+        </li>
+        <li onclick="abrirPraca('praca-dos-ipes')">
+          🌺 <strong>Parque dos Ipês</strong> ➜
+        </li>
+        <li onclick="abrirPraca('lago-nv-carajas')">
+          🏞️ <strong>Lago Nova Carajás</strong> ➜
+        </li>
+        <li onclick="abrirPraca('praca-da-biblia')">
+          🌱 <strong>Praça da Bíblia</strong> ➜
+        </li>
+      </ul>
+    </section>
+
+    <section class="faq">
+      <h2>Dúvidas Frequentes</h2>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          O que é o VerdeMap Carajás? <span class="toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          O VerdeMap Carajás é um mapa interativo criado por um aluno do
+          Instituto Federal do Pará que mostra as áreas verdes de Parauapebas e
+          sugere lugares para visitar.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          Como posso visitar uma praça? <span class="toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          Basta clicar na praça desejada no Top 5 ou abrir o mapa expandido e
+          realizar uma pesquisa na barra de navegação.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          O mapa está atualizado? <span class="toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          Sim! O mapa é atualizado periodicamente para incluir novas áreas
+          verdes e informações sobre as praças.
+        </div>
+      </div>
+    </section>
+    <div class="info-lateral">
+      <section id="clima" class="clima-box">
+        <h3>Previsão do Tempo</h3>
+        <div id="weather-info">Carregando...</div>
+        <h5 style="margin-top: 10px; font-size: 0.8rem">Fonte: Open-Meteo</h5>
+      </section>
+
+      <section class="dicas-box">
+        <h3>Dicas Ambientais</h3>
+        <ul>
+          <li>🌱 Plante uma árvore e ajude a aumentar as áreas verdes.</li>
+          <li>🚯 Evite jogar lixo nas praças e bosques.</li>
+          <li>💧 Economize água sempre que possível.</li>
+        </ul>
+      </section>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-container">
+        <div class="footer-content">
+          <h3>APOIO</h3>
+          <ul>
+            <li>
+              <a href="index.html" target="_blank">Página Inicial</a>
+            </li>
+            <li>
+              <a href="termos.html" target="_blank">Termos</a>
+            </li>
+            <li>
+              <a href="dúvidasfrequentes.html" target="_blank"
+                >Dúvidas Frequentes</a
+              >
+            </li>
+            <li>
+              <a href="developer.html" target="_blank">Desenvolvedor</a>
+            </li>
+            <li>
+              <a href="https://forms.gle/pW2aDKACcec7niAd9" target="_blank"
+                >Sugestões e Avaliações</a
+              >
+            </li>
+          </ul>
+        </div>
+        <img class"fim" src="https://i.postimg.cc/v1LsWpTs/ecomap.png"
+        alt="EcoMap Logo" />
+      </div>
+      <div class="direitos">
+        © VerdeMAP Carajás - Fábio Samuel - 2025 / Todos os Direitos Reservados.
+      </div>
+    </footer>
+    <script>
+      function abrirMapa() {
+        window.location.href = "mapa.html";
+      }
+
+      function abrirPraca(praca) {
+        let latitude, longitude;
+        if (praca === "complexo-turistico") {
+          latitude = -6.0739;
+          longitude = -49.8889;
+        }
+        if (praca === "pracaalvorá") {
+          latitude = -6.0961;
+          longitude = -49.8547;
+        }
+        if (praca === "praca-dos-ipes") {
+          latitude = -6.0408;
+          longitude = -49.8894;
+        }
+        if (praca == "lago-nv-carajas") {
+          latitude = -6.0869;
+          longitude = -49.8425;
+        }
+        if (praca == "praca-da-biblia") {
+          latitude = -6.0681;
+          longitude = -49.8939;
+        }
+        if (latitude && longitude) {
+          window.location.href = `mapa.html?lat=${latitude}&lng=${longitude}`;
+        }
+      }
+
+      async function carregarClima() {
+        const lat = -6.07;
+        const lon = -49.9;
+        const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true&timezone=America/Sao_Paulo`;
+
+        try {
+          const resp = await fetch(url);
+          const dados = await resp.json();
+          const temp = dados.current_weather.temperature;
+          const weatherCode = dados.current_weather.weathercode;
+
+          let cond = "Clima";
+          if (weatherCode === 0) cond = "Céu limpo";
+          else if ([1, 2, 3].includes(weatherCode))
+            cond = "Parcialmente nublado";
+          else cond = "Nublado / Com possibilidade de chuva";
+
+          document.getElementById("weather-info").innerHTML = `
+          <p><strong>${temp}°C</strong></p>
+          <p>${cond}</p>
+        `;
+        } catch (e) {
+          document.getElementById("weather-info").innerHTML =
+            "Não foi possível carregar o clima 😕";
+        }
+      }
+
+      carregarClima();
+
+      function toggleFaq(element) {
+        element.classList.toggle("active");
+        const answer = element.nextElementSibling;
+        if (answer.style.display === "block") {
+          answer.style.display = "none";
+        } else {
+          answer.style.display = "block";
+        }
+      }
+    </script>
+  </body>
+</html>
