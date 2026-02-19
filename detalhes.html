@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Detalhes da Área Verde</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f1f1f1;
+        color: #333;
+      }
+      header {
+        background-color: #2d6a4f;
+        color: white;
+        text-align: center;
+        padding: 15px;
+      }
+      .container {
+        max-width: 900px;
+        margin: 30px auto;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        padding: 20px;
+      }
+      .carrossel {
+        display: flex;
+        overflow-x: auto;
+        gap: 20px;
+        scroll-snap-type: x mandatory;
+        padding: 10px 0;
+      }
+      .carrossel::-webkit-scrollbar {
+        height: 8px;
+      }
+      .carrossel::-webkit-scrollbar-thumb {
+        background-color: #2d6a4f;
+        border-radius: 5px;
+      }
+      .bloco {
+        flex: none;
+        width: 280px;
+        height: 200px;
+        border-radius: 10px;
+        background-color: #ddd;
+        scroll-snap-align: start;
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+        background-size: cover;
+        background-position: center;
+      }
+      .descricao {
+        margin-top: 25px;
+        font-size: 17px;
+        line-height: 1.6;
+        text-align: justify;
+      }
+      a {
+        display: inline-block;
+        margin-top: 20px;
+        color: #2d6a4f;
+        font-weight: bold;
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h2 id="nomeArea">Detalhes da Área Verde</h2>
+    </header>
+
+    <div class="container">
+      <div class="carrossel">
+        <div class="bloco" id="img1"></div>
+        <div class="bloco" id="img2"></div>
+        <div class="bloco" id="img3"></div>
+      </div>
+
+      <div class="descricao" id="descricao">Carregando informações...</div>
+      <a href="index.html">← Voltar ao mapa</a>
+    </div>
+
+    <script>
+      // Função para remover acentos e deixar letras minúsculas
+      function normalizar(str) {
+        return str
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .toLowerCase();
+      }
+
+      const params = new URLSearchParams(window.location.search);
+      const nome = params.get("nome");
+
+      document.getElementById("nomeArea").textContent = nome;
+
+      // Banco de dados das áreas com links externos
+      const areas = {
+        "lago nova carajas": {
+          descricao:
+            "Área de lazer localizada no bairro Nova Carajás. Possui um lago, bancos, parquinhos para crianças, restaurantes e quiosques de venda. É um ótimo espaço para passear com a família e praticar exercícios.",
+          imagens: [
+            "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1509228627157-7f9f56e5b9c8?auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1508766206392-8bd5cf550d1c?auto=format&fit=crop&w=800&q=80",
+          ],
+        },
+        "parque das palmeiras": {
+          descricao:
+            "Área de lazer com trilhas ecológicas, bancos, árvores nativas e espaço para piqueniques.",
+          imagens: [
+            "https://images.unsplash.com/photo-1526676039417-99e23a6a8f2e?auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1508766206392-8bd5cf550d1c?auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
+          ],
+        },
+      };
+
+      const area = areas[normalizar(nome)];
+      if (area) {
+        document.getElementById("descricao").textContent = area.descricao;
+        document.getElementById(
+          "img1"
+        ).style.backgroundImage = `url(${area.imagens[0]})`;
+        document.getElementById(
+          "img2"
+        ).style.backgroundImage = `url(${area.imagens[1]})`;
+        document.getElementById(
+          "img3"
+        ).style.backgroundImage = `url(${area.imagens[2]})`;
+      } else {
+        document.getElementById("descricao").textContent =
+          "Área verde localizada em Parauapebas. Mais informações em breve.";
+      }
+    </script>
+  </body>
+</html>
