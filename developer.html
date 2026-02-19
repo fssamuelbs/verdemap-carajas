@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Desenvolvedor — VerdeMAP Carajás</title>
+
+    <style>
+      body {
+        margin: 0;
+        font-family: system-ui, Segoe UI, Roboto;
+        background: linear-gradient(#effff3, #d2f7dd);
+        color: #222;
+      }
+
+      /* HEADER */
+      header {
+        width: 100%;
+        background: #fff;
+        padding: 15px 0;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+      }
+
+      .logo-nav img {
+        height: 70px;
+        cursor: pointer;
+        transition: 0.3s;
+        margin-left: 20px;
+      }
+      .logo-nav img:hover {
+        transform: scale(1.05);
+      }
+
+      nav {
+        margin-right: 30px;
+      }
+      nav a {
+        margin: 0 15px;
+        text-decoration: none;
+        color: #333;
+        font-weight: 600;
+        transition: 0.3s;
+      }
+      nav a:hover {
+        color: #0984e3;
+      }
+
+      /* CONTAINER */
+      .container {
+        max-width: 900px;
+        margin: 120px auto 40px auto;
+        padding: 0 16px;
+      }
+
+      .bloco {
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        padding: 32px;
+        margin-bottom: 24px;
+      }
+
+      h2 {
+        margin-top: 0;
+      }
+
+      ul {
+        padding-left: 20px;
+      }
+
+      /* FOOTER */
+      footer {
+        width: 100%;
+        background: #333;
+        color: #fff;
+        padding: 30px 0 10px 0;
+        text-align: left;
+        font-family: Arial, sans-serif;
+      }
+
+      .footer-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .footer-content h3 {
+        margin-bottom: 10px;
+        font-size: 20px;
+      }
+
+      .footer-content ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .footer-content ul li {
+        margin: 5px 0;
+      }
+
+      .footer-content ul li a {
+        color: #fff;
+        text-decoration: none;
+      }
+      .footer-content ul li a:hover {
+        text-decoration: underline;
+      }
+
+      .fim {
+        height: 80px;
+      }
+
+      .direitos {
+        margin-top: 15px;
+        font-size: 14px;
+        opacity: 0.8;
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <div class="logo-nav">
+        <img
+          src="https://i.postimg.cc/v1LsWpTs/ecomap.png"
+          alt="VerdeMap Logo"
+        />
+      </div>
+
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="dúvidasfrequentes.html">O que é</a>
+        <a href="developer.html">Desenvolvedor</a>
+      </nav>
+    </header>
+
+    <main class="container">
+      <section class="bloco">
+        <h2>Desenvolvedor</h2>
+        <p>
+          O VerdeMAP Carajás foi desenvolvido por
+          <strong>Fábio Samuel Oliveira Pereira</strong>, discente do curso de
+          Meio Ambiente do Instituto Federal do Pará – Campus Parauapebas.
+        </p>
+        <p>
+          O objetivo do projeto é integrar conhecimentos de cartografia,
+          geotecnologia e programação para facilitar o acesso da população às
+          áreas verdes da cidade e fortalecer a educação ambiental.
+        </p>
+
+        <h3>Orientação</h3>
+        <p>
+          O desenvolvimento contou com a orientação da docente
+          <strong>Michele Kely Moraes Santos Souza</strong>, doutora em
+          Geografia.
+        </p>
+
+        <h3>Tecnologias Utilizadas</h3>
+        <ul>
+          <li>HTML, CSS e JavaScript</li>
+          <li>Google Maps e Google Earth — coleta manual de coordenadas</li>
+          <li>OpenStreetMap e Open-Meteo — APIs gratuitas</li>
+          <li>Sistema de hospedagem Discloud</li>
+          <li>CodeSandBox - Software editor código</li>
+        </ul>
+
+        <h3>Contato</h3>
+        <p>
+          Para sugestões, erros ou colaboração, envie um e-mail:<br />
+          📧 <strong>verdemap.carajas@protonmail.com</strong>
+        </p>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-container">
+        <div class="footer-content">
+          <h3>APOIO</h3>
+          <ul>
+            <li><a href="index.html">Página Inicial</a></li>
+            <li><a href="termos.html">Termos</a></li>
+            <li><a href="dúvidasfrequentes.html">Dúvidas Frequentes</a></li>
+            <li><a href="developer.html">Desenvolvedor</a></li>
+            <li><a href="#">APIs</a></li>
+          </ul>
+        </div>
+        <img
+          class="fim"
+          src="https://i.postimg.cc/v1LsWpTs/ecomap.png"
+          alt="EcoMap Logo"
+        />
+      </div>
+      <div class="direitos">
+        © VerdeMAP Carajás - Fábio Samuel - 2025 / Todos os Direitos Reservados.
+      </div>
+    </footer>
+  </body>
+</html>
