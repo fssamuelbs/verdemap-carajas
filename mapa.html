@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Áreas Verdes em Parauapebas</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/photo-sphere-viewer/dist/photo-sphere-viewer.css"
+    />
+
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(#effff3, #d2f7dd);
+        font-family: Arial, sans-serif;
+      }
+
+      /* HEADER */
+      #topHeader {
+        background: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 20px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        z-index: 1000;
+        position: relative;
+      }
+
+      #logo {
+        height: 60px;
+        cursor: pointer;
+      }
+
+      #searchContainer {
+        position: relative;
+        width: 320px;
+      }
+
+      #searchInput {
+        width: 100%;
+        background: #ffefef;
+        padding: 8px 12px;
+        border-radius: 6px;
+        border: none;
+        outline: none;
+      }
+
+      #resultsContainer {
+        position: absolute;
+        top: 40px;
+        background: #bababa;
+        width: 100%;
+        border-radius: 6px;
+        z-index: 2000;
+      }
+
+      /* MAPA */
+      #map {
+        height: calc(100% - 80px);
+        width: 100%;
+      }
+
+      /* SIDEBAR */
+      .sidebar {
+        position: fixed;
+        top: 0;
+        right: -360px;
+        width: 360px;
+        height: 100%;
+        background: #fff;
+        padding: 20px;
+        box-sizing: border-box;
+        box-shadow: -3px 0 15px rgba(0, 0, 0, 0.2);
+        transition: right 0.3s ease;
+        overflow-y: auto;
+        z-index: 1100;
+      }
+
+      .sidebar.show {
+        right: 0;
+      }
+
+      #closeBtn {
+        background: none;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+        float: right;
+      }
+
+      .carrossel {
+        display: flex;
+        gap: 10px;
+        overflow-x: auto;
+        margin-bottom: 15px;
+      }
+
+      .bloco {
+        width: 300px;
+        height: 180px;
+        border-radius: 10px;
+        background-size: cover;
+        background-position: center;
+        flex-shrink: 0;
+      }
+
+      #viewer360 {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: black;
+        z-index: 9999;
+      }
+
+      #close360 {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 18px;
+        z-index: 10000;
+      }
+
+      footer {
+        background: #333;
+        color: #fff;
+        text-align: center;
+        padding: 15px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header id="topHeader">
+      <a href="index.html">
+        <img
+          id="logo"
+          src="https://i.postimg.cc/XvtY0W0p/VERDE-20251031-084448-0000-removebg-preview.png"
+          alt="Logo"
+        />
+      </a>
+
+      <div id="searchContainer">
+        <input
+          id="searchInput"
+          type="text"
+          placeholder="🔍 Pesquise por nome ou tipo"
+        />
+        <div id="resultsContainer"></div>
+      </div>
+    </header>
+
+    <div id="map"></div>
+
+    <div id="sidebar" class="sidebar">
+      <button id="closeBtn">×</button>
+      <h2 id="sidebarNome"></h2>
+
+      <div class="carrossel">
+        <div class="bloco" id="sbImg1"></div>
+        <div class="bloco" id="sbImg2"></div>
+        <div class="bloco" id="sbImg3"></div>
+      </div>
+
+      <button
+        id="btn360"
+        style="
+          width: 100%;
+          padding: 10px;
+          background: #0066ff;
+          color: white;
+          border: none;
+          border-radius: 10px;
+          cursor: pointer;
+          font-size: 16px;
+          display: none;
+        "
+      >
+        Ver em 360°
+      </button>
+
+      <p id="sidebarDescricao"></p>
+    </div>
+
+    <div id="viewer360">
+      <button id="close360">Fechar</button>
+    </div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/photo-sphere-viewer/dist/photo-sphere-viewer.js"></script>
+
+    <script src="package.js"></script>
+    <script src="index.js"></script>
+  </body>
+</html>
