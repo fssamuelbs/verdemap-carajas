@@ -46,7 +46,9 @@ O VerdeMap Carajás foi criado com foco em:
 ## 👨‍💻 Autor
 
 Fábio Samuel Oliveira Pereira
-Técnico em Meio Ambiente pelo IFPA
+
+Técnico em Meio Ambiente pelo IFPA 
+
 Aluno de Engenharia de Software – UEPA
 
 Projeto acadêmico e iniciativa de inovação regional voltada à conscientização ambiental e organização de dados geográficos na região de Carajás.
