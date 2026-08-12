@@ -1,11 +1,4 @@
-/* ============================================================
-   package.js - Versão reescrita completa
-   - Mapa (Leaflet)
-   - Sidebar (imagens, descrição)
-   - Pesquisa inteligente (autocomplete + sugestão)
-   - Ícones padrão/selecionado
-   - Suporte a foto 360º (PhotoSphereViewer ou iframe TeliportMe)
-   ============================================================ */
+
 
 /* -------------------------
    0) Proteção / checagem do DOM
