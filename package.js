@@ -257,6 +257,13 @@ const areas = {
     imagens: [],
   },
 
+     "BioParque Vale": {
+    coords: [-6.064833, -50.058960],
+    descricao:
+      "Os visitantes dizem que este parque oferece uma oportunidade única de se conectar com a natureza, apresentando animais bem cuidados, flora diversificada e trilhas pavimentadas acessíveis, adequadas para todos. Eles também destacam a entrada gratuita, as instalações organizadas e o serviço atencioso e educado da equipe. ",
+    imagens: [],
+  },
+
   "Complexo Turístico de Parauapebas": {
     coords: [-6.0739, -49.8889],
     descricao:
