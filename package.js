@@ -264,6 +264,13 @@ const areas = {
     imagens: [],
   },
 
+        "Trilha Uxi": {
+    coords: [-6.066915, -50.061887], 
+    descricao:
+     "",
+      imagens: [],
+  },
+
   "Complexo Turístico de Parauapebas": {
     coords: [-6.0739, -49.8889],
     descricao:
